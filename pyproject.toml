@@ -21,6 +21,7 @@ classifiers = [
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
   "Programming Language :: Python :: Implementation :: CPython",
   "Programming Language :: Python :: Implementation :: PyPy",
   "Typing :: Typed",
@@ -33,9 +34,9 @@ tests-mypy = [
   'pytest-mypy-plugins; platform_python_implementation == "CPython" and python_version >= "3.8"',
   # Since the mypy error messages keep changing, we have to keep updating this
   # pin.
-  'mypy>=1.6; platform_python_implementation == "CPython" and python_version >= "3.8"',
+  'mypy>=1.6,<1.10; platform_python_implementation == "CPython" and python_version >= "3.8"',
 ]
-tests-no-zope = [
+tests = [
   # For regression test to ensure cloudpickle compat doesn't break.
   'cloudpickle; platform_python_implementation == "CPython"',
   "hypothesis",
@@ -45,7 +46,6 @@ tests-no-zope = [
   "pytest-xdist[psutil]",
   "attrs[tests-mypy]",
 ]
-tests = ["attrs[tests-no-zope]", "zope.interface"]
 cov = [
   "attrs[tests]",
   # Ensure coverage is new enough for `source_pkgs`.
@@ -55,7 +55,6 @@ docs = [
   "furo",
   "myst-parser",
   "sphinx",
-  "zope.interface",
   "sphinx-notfound-page",
   "sphinxcontrib-towncrier",
   "towncrier",
@@ -109,7 +108,7 @@ text = """
 
 ---
 
-[Full changelog](https://www.attrs.org/en/stable/changelog.html)
+[Full changelog →](https://www.attrs.org/en/stable/changelog.html)
 """
 
 # Point sponsor image URLs to versions.
@@ -269,5 +268,6 @@ showcontent = true
 
 
 [tool.mypy]
+pretty = true
 disallow_untyped_defs = true
 check_untyped_defs = true

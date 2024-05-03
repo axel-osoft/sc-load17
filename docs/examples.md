@@ -569,7 +569,7 @@ AutoC(l=[], x=1, foo='every attrib needs a type if auto_attribs=True', bar=None)
 
 The generated `__init__` method will have an attribute called `__annotations__` that contains this type information.
 
-If your annotations contain strings (e.g. forward references),
+If your annotations contain strings (for example, forward references),
 you can resolve these after all references have been defined by using {func}`attrs.resolve_types`.
 This will replace the *type* attribute in the respective fields.
 
@@ -689,7 +689,7 @@ Sometimes you may want to create a class programmatically.
 >>> C2 = make_class("C2", {"x": field(type=int), "y": field()})
 >>> fields(C1) == fields(C2)
 True
->>> fields(C1).x.type
+>>> fields(C2).x.type
 <class 'int'>
 ```
 
